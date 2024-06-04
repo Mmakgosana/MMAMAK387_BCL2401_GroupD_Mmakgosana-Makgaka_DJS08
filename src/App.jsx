@@ -7,7 +7,7 @@ import Vans from "./pages/Vans"
 
 import "./server"
 
-function App() {
+export default function App() {
   return (
     <BrowserRouter>
       <header>
@@ -22,11 +22,8 @@ function App() {
         <Route path="/" element={<Home />} />
         <Route path="/about" element={<About />} />
         <Route path="/vans" element={<Vans />} />
+        <Route path="/vans/:id" element={<Vans />} />
       </Routes>
     </BrowserRouter>
   )
 }
-
-ReactDOM
-  .createRoot(document.getElementById('root'))
-  .render(<App />);
