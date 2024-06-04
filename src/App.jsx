@@ -13,7 +13,7 @@ export default function App() {
           <header>
             <Link className="site-logo" to="/">#VANLIFE</Link>
             <nav>
-                <Link to="/about"></Link>
+                <Link to="/about">About</Link>
             </nav>
           </header>
             <Routes>
@@ -24,4 +24,8 @@ export default function App() {
         </BrowserRouter>
     )
 }
+
+ReactDOM
+  .createRoot(document.getElementById('root'))
+  .render(<App />)
 
