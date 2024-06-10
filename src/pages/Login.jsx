@@ -1,14 +1,21 @@
 import React from "react"
 import { useNavigate, useLocation } from "react-router-dom"
+//import { loginUser } from "../api"
+
 
 export default function Login() {
     const [loginFormData, setLoginFormData] = React.useState({ email: "", password: "" })
+    const [status, setStatus] = React.useState("idle")
     const location = useLocation()
     
-
     function handleSubmit(e) {
         e.preventDefault()
-        console.log(loginFormData)
+        setStatus("submitting")
+        loginUser(loginFormData)
+            .then(data => {
+            }).finally(() => {
+                setStatus("idle")
+            })
     }
 
     function handleChange(e) {
@@ -21,7 +28,7 @@ export default function Login() {
 
     return (
         <div className="login-container">
-             {
+            {
                 location.state?.message &&
                 <h3 className="login-first">{location.state.message}</h3>
             }
@@ -41,7 +48,11 @@ export default function Login() {
                     placeholder="Password"
                     value={loginFormData.password}
                 />
-                <button>Log in</button>
+                <button 
+                disabled={status === "submitting"}
+                >
+                    {status === "submitting" ? "Logging in..." : "Log in"}
+                </button>
             </form>
         </div>
     )
