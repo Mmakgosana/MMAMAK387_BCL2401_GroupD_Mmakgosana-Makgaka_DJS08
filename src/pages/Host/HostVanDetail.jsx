@@ -11,7 +11,6 @@ export default function HostVanDetail() {
         color: "#161616"
     }
 
-
     React.useEffect(() => {
         fetch(`/api/host/vans/${id}`)
             .then(res => res.json())
@@ -21,7 +20,6 @@ export default function HostVanDetail() {
     if (!currentVan) {
         return <h1>Loading...</h1>
     }
-
     return (
         <section>
             <Link
@@ -43,32 +41,29 @@ export default function HostVanDetail() {
                         <h4>${currentVan.price}/day</h4>
                     </div>
                 </div>
+
                 <nav className="host-van-detail-nav">
-                <NavLink
+                    <NavLink
                         to="."
                         end
                         style={({ isActive }) => isActive ? activeStyles : null}
                     >
                         Details
                     </NavLink>
-                    
                     <NavLink
                         to="pricing"
                         style={({ isActive }) => isActive ? activeStyles : null}
                     >
                         Pricing
                     </NavLink>
-                    
                     <NavLink
                         to="photos"
                         style={({ isActive }) => isActive ? activeStyles : null}
                     >
                         Photos
                     </NavLink>
-                
-                
                 </nav>
-                <Outlet context />
+                <Outlet context={{ currentVan }} />
             </div>
         </section>
     )
